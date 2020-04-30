@@ -96,13 +96,9 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="/iheeleme" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/iheeleme" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="mail" target="_blank" href="mailto:iheeleme@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 		</nav>
@@ -139,13 +135,9 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="/iheeleme" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/iheeleme" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="mail" target="_blank" href="mailto:iheeleme@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -172,6 +164,83 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-vue-js-axios中get、post请求方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/29/vue-js-axios%E4%B8%ADget%E3%80%81post%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/">vue.js+axios中post请求方式</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/29/vue-js-axios%E4%B8%ADget%E3%80%81post%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2020-04-29T05:12:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!--# vue.js+axios中post请求方式
+-->
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><pre><code>前几天一个项目中遇到一个以前没遇到过的问题，使用postman发送post请求采用body raw方式提交参数</code></pre><p>   <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gebmbixvh3j30ql07rwf4.jpg" alt></p>
+<pre><code>菜鸡表示这种方式提交post数据完全没遇到过，一脸懵，完全没法找到axios中如何进行这种方式的参数提交
+经过一番查找，对post的几种数据提交方式有了比较清晰的了解。</code></pre><h3 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a>application/x-www-form-urlencoded</h3><p>这种是最为常见的post提交数据方式。浏览器中使用表单提交，如果不设置enctype的属性，默认便是application/x-www-form-urlencoded方式提交，这种方式最显著的特点就是数据是以键值对的形式提交的。同时key，value的值也进行了URL转码。由于axios中使用post时默认的content-type为application/json;charset=UTF-8，所以在使用axios实现application/x-www-form-urlencoded类型post时需要将提交的json序列化成URL的形式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">import</span> qs <span class="keyword">from</span> <span class="string">'Qs'</span></span><br><span class="line"><span class="keyword">let</span> data = &#123;<span class="string">"code"</span>:<span class="string">"200"</span>,<span class="string">"name"</span>:<span class="string">"xxxx"</span>&#125;;</span><br><span class="line">axios.post(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.$url&#125;</span>/test`</span>,qs.stringify(&#123;</span><br><span class="line">    data</span><br><span class="line">&#125;))</span><br><span class="line">.then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'res=&gt;'</span>,res);            </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="raw（application-json-、text-plain）"><a href="#raw（application-json-、text-plain）" class="headerlink" title="raw（application/json 、text/plain）"></a>raw（application/json 、text/plain）</h3><p>大多数都是在用application/json的形式提交，而且axios默认的提交方式是json，因此就出现了前言中项目里遇到的问题，之前没遇到过使用text/plain这种形式的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">let</span> data = &#123;<span class="string">"code"</span>:<span class="string">"1234"</span>,<span class="string">"name"</span>:<span class="string">"yyyy"</span>&#125;;</span><br><span class="line">axios.post(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.$url&#125;</span>/test`</span>,data,&#123;<span class="attr">header</span>:&#123;Content-Type: text/plain&#125;&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'res=&gt;'</span>,res);            </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在axios中使用raw类型的请求时，一定要注意默认的content-type。</p>
+<h3 id="multipart-form-data"><a href="#multipart-form-data" class="headerlink" title="multipart/form-data"></a>multipart/form-data</h3><p>这个也是常见类型的post提交方式，能提交多媒体文件，不限于文本和json。同时上传数据也是需要用FormData进行封装</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="keyword">new</span> FormData();</span><br><span class="line">data.append(<span class="string">'code'</span>,<span class="string">'1234'</span>);</span><br><span class="line">data.append(<span class="string">'name'</span>,<span class="string">'yyyy'</span>);</span><br><span class="line">axios.post(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.$url&#125;</span>/test`</span>,data)</span><br><span class="line">.then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'res=&gt;'</span>,res);            </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>需要注意的一点是form-data不支持base64转义后的图片，所以很多实际应用中，出现了用base64转义完成的图片，在使用form-data进行上传时，需要先将图片重新转换成文件类型！</p>
+<p>转换代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">dataURLtoFile(dataurl, filename) &#123;</span><br><span class="line">      <span class="comment">//将base64转换为文件，dataurl为base64字符串，filename为文件名（必须带后缀名，如.jpg,.png）</span></span><br><span class="line">      <span class="keyword">var</span> arr = dataurl.split(<span class="string">","</span>),</span><br><span class="line">        mime = arr[<span class="number">0</span>].match(<span class="regexp">/:(.*?);/</span>)[<span class="number">1</span>],</span><br><span class="line">        bstr = atob(arr[<span class="number">1</span>]),</span><br><span class="line">        n = bstr.length,</span><br><span class="line">        u8arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(n);</span><br><span class="line">      <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">        u8arr[n] = bstr.charCodeAt(n);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> File([u8arr], filename, &#123; <span class="attr">type</span>: mime &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/29/vue-js-axios%E4%B8%ADget%E3%80%81post%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-记录一次家庭环境二级路由配置遇到的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -272,11 +341,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="扯淡"><a href="#扯淡" class="headerlink" title="扯淡"></a>扯淡</h1><p>为什么用hexo写博客呢，不是第一次写博客了，初中就折腾过帝国cms，织梦cms，高中折腾zblog，WordPress。也没折腾出什么名堂。</p>
-<p>几个月前一个大佬建议，平时学习、做项目、折腾时候抽出点时间写写博客。能让自己的学习更有条理，在未来的简历上也能加分，于是重建博客又提上日程，考虑到之前的几个博客的没啥价值，一部分数据备份也在以前的老台式机上面，就不打算恢复了，然后就有了个重新来过的想法。</p>
-<p>一开始还是准备用WordPress的，后面细想，重新来过，还是重新选框架，重新确定风格，然后就看上了hexo，静态，简约，用Markdown来专注于写作，都是吸引我的地方。</p>
-<p>所以就有了这个！😂 </p>
-<h3 id="Hello-hexo！-未来加油，一同远行！"><a href="#Hello-hexo！-未来加油，一同远行！" class="headerlink" title="Hello hexo！ 未来加油，一同远行！"></a>Hello hexo！ 未来加油，一同远行！</h3>
+        <!-- # 扯淡 -->
+<!-- 为什么用hexo写博客呢，不是第一次写博客了，初中就折腾过帝国cms，织梦cms，高中折腾zblog，WordPress。也没折腾出什么名堂。
+
+几个月前一个大佬建议，平时学习、做项目、折腾时候抽出点时间写写博客。能让自己的学习更有条理，在未来的简历上也能加分，于是重建博客又提上日程，考虑到之前的几个博客的没啥价值，一部分数据备份也在以前的老台式机上面，就不打算恢复了，然后就有了个重新来过的想法。
+
+一开始还是准备用WordPress的，后面细想，重新来过，还是重新选框架，重新确定风格，然后就看上了hexo，静态，简约，用Markdown来专注于写作，都是吸引我的地方。
+
+所以就有了这个！😂  -->
+
+
+<p>Hello hexo！ 未来加油，一同远行！</p>
+
       
 
       
@@ -459,27 +535,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="https://msdn.itellyou.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>MSDN，我告诉你</a>
             </li>
           
         </ul>
@@ -490,7 +546,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">宅男，米粉，果粉&lt;br&gt;&lt;br&gt;卑微的前端👨‍💻‍&lt;br&gt;</div>
   	  	
     	</section>
     

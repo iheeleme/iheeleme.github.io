@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iheeleme.com">
-  <title>Hello hexo | iheeleme的博客</title>
+  <title>vue.js+axios中post请求方式 | iheeleme的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hello hexo！ 未来加油，一同远行！">
+  <meta name="description" content="前言前几天一个项目中遇到一个以前没遇到过的问题，使用postman发送post请求采用body raw方式提交参数    菜鸡表示这种方式提交post数据完全没遇到过，一脸懵，完全没法找到axios中如何进行这种方式的参数提交 经过一番查找，对post的几种数据提交方式有了比较清晰的了解。application&#x2F;x-www-form-urlencoded这种是最为常见的post提交数据方式。浏览">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello hexo">
-<meta property="og:url" content="https://iheeleme.com/2020/03/13/hello-world/index.html">
+<meta property="og:title" content="vue.js+axios中post请求方式">
+<meta property="og:url" content="https://iheeleme.com/2020/04/29/vue-js-axios%E4%B8%ADget%E3%80%81post%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="iheeleme的博客">
-<meta property="og:description" content="Hello hexo！ 未来加油，一同远行！">
+<meta property="og:description" content="前言前几天一个项目中遇到一个以前没遇到过的问题，使用postman发送post请求采用body raw方式提交参数    菜鸡表示这种方式提交post数据完全没遇到过，一脸懵，完全没法找到axios中如何进行这种方式的参数提交 经过一番查找，对post的几种数据提交方式有了比较清晰的了解。application&#x2F;x-www-form-urlencoded这种是最为常见的post提交数据方式。浏览">
 <meta property="og:locale" content="zh">
-<meta property="article:published_time" content="2020-03-13T14:52:29.656Z">
-<meta property="article:modified_time" content="2020-04-29T04:25:06.386Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gebmbixvh3j30ql07rwf4.jpg">
+<meta property="article:published_time" content="2020-04-29T05:12:38.000Z">
+<meta property="article:modified_time" content="2020-04-30T10:56:10.972Z">
 <meta property="article:author" content="iheeleme">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="js">
@@ -36,6 +37,7 @@
 <meta property="article:tag" content="css3">
 <meta property="article:tag" content="用户体验">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gebmbixvh3j30ql07rwf4.jpg">
   
     <link rel="alternative" href="/atom.xml" title="iheeleme的博客" type="application/atom+xml">
   
@@ -167,37 +169,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-vue-js-axios中get、post请求方式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello hexo
+      vue.js+axios中post请求方式
     </h1>
   
 
         
-        <a href="/2020/03/13/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-13T14:52:29.656Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-13</time>
+        <a href="/2020/04/29/vue-js-axios%E4%B8%ADget%E3%80%81post%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2020-04-29T05:12:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- # 扯淡 -->
-<!-- 为什么用hexo写博客呢，不是第一次写博客了，初中就折腾过帝国cms，织梦cms，高中折腾zblog，WordPress。也没折腾出什么名堂。
+        <!--# vue.js+axios中post请求方式
+-->
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><pre><code>前几天一个项目中遇到一个以前没遇到过的问题，使用postman发送post请求采用body raw方式提交参数</code></pre><p>   <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gebmbixvh3j30ql07rwf4.jpg" alt></p>
+<pre><code>菜鸡表示这种方式提交post数据完全没遇到过，一脸懵，完全没法找到axios中如何进行这种方式的参数提交
+经过一番查找，对post的几种数据提交方式有了比较清晰的了解。</code></pre><h3 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a>application/x-www-form-urlencoded</h3><p>这种是最为常见的post提交数据方式。浏览器中使用表单提交，如果不设置enctype的属性，默认便是application/x-www-form-urlencoded方式提交，这种方式最显著的特点就是数据是以键值对的形式提交的。同时key，value的值也进行了URL转码。由于axios中使用post时默认的content-type为application/json;charset=UTF-8，所以在使用axios实现application/x-www-form-urlencoded类型post时需要将提交的json序列化成URL的形式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">import</span> qs <span class="keyword">from</span> <span class="string">'Qs'</span></span><br><span class="line"><span class="keyword">let</span> data = &#123;<span class="string">"code"</span>:<span class="string">"200"</span>,<span class="string">"name"</span>:<span class="string">"xxxx"</span>&#125;;</span><br><span class="line">axios.post(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.$url&#125;</span>/test`</span>,qs.stringify(&#123;</span><br><span class="line">    data</span><br><span class="line">&#125;))</span><br><span class="line">.then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'res=&gt;'</span>,res);            </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-几个月前一个大佬建议，平时学习、做项目、折腾时候抽出点时间写写博客。能让自己的学习更有条理，在未来的简历上也能加分，于是重建博客又提上日程，考虑到之前的几个博客的没啥价值，一部分数据备份也在以前的老台式机上面，就不打算恢复了，然后就有了个重新来过的想法。
-
-一开始还是准备用WordPress的，后面细想，重新来过，还是重新选框架，重新确定风格，然后就看上了hexo，静态，简约，用Markdown来专注于写作，都是吸引我的地方。
-
-所以就有了这个！😂  -->
-
-
-<p>Hello hexo！ 未来加油，一同远行！</p>
+<h3 id="raw（application-json-、text-plain）"><a href="#raw（application-json-、text-plain）" class="headerlink" title="raw（application/json 、text/plain）"></a>raw（application/json 、text/plain）</h3><p>大多数都是在用application/json的形式提交，而且axios默认的提交方式是json，因此就出现了前言中项目里遇到的问题，之前没遇到过使用text/plain这种形式的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">let</span> data = &#123;<span class="string">"code"</span>:<span class="string">"1234"</span>,<span class="string">"name"</span>:<span class="string">"yyyy"</span>&#125;;</span><br><span class="line">axios.post(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.$url&#125;</span>/test`</span>,data,&#123;<span class="attr">header</span>:&#123;Content-Type: text/plain&#125;&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'res=&gt;'</span>,res);            </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在axios中使用raw类型的请求时，一定要注意默认的content-type。</p>
+<h3 id="multipart-form-data"><a href="#multipart-form-data" class="headerlink" title="multipart/form-data"></a>multipart/form-data</h3><p>这个也是常见类型的post提交方式，能提交多媒体文件，不限于文本和json。同时上传数据也是需要用FormData进行封装</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="keyword">new</span> FormData();</span><br><span class="line">data.append(<span class="string">'code'</span>,<span class="string">'1234'</span>);</span><br><span class="line">data.append(<span class="string">'name'</span>,<span class="string">'yyyy'</span>);</span><br><span class="line">axios.post(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.$url&#125;</span>/test`</span>,data)</span><br><span class="line">.then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'res=&gt;'</span>,res);            </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>需要注意的一点是form-data不支持base64转义后的图片，所以很多实际应用中，出现了用base64转义完成的图片，在使用form-data进行上传时，需要先将图片重新转换成文件类型！</p>
+<p>转换代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">dataURLtoFile(dataurl, filename) &#123;</span><br><span class="line">      <span class="comment">//将base64转换为文件，dataurl为base64字符串，filename为文件名（必须带后缀名，如.jpg,.png）</span></span><br><span class="line">      <span class="keyword">var</span> arr = dataurl.split(<span class="string">","</span>),</span><br><span class="line">        mime = arr[<span class="number">0</span>].match(<span class="regexp">/:(.*?);/</span>)[<span class="number">1</span>],</span><br><span class="line">        bstr = atob(arr[<span class="number">1</span>]),</span><br><span class="line">        n = bstr.length,</span><br><span class="line">        u8arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(n);</span><br><span class="line">      <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">        u8arr[n] = bstr.charCodeAt(n);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> File([u8arr], filename, &#123; <span class="attr">type</span>: mime &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -277,7 +283,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://iheeleme.com/2020/03/13/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iheeleme.com/2020/04/29/vue-js-axios%E4%B8%ADget%E3%80%81post%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,15 +297,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/14/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%AE%B6%E5%BA%AD%E7%8E%AF%E5%A2%83%E4%BA%8C%E7%BA%A7%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          记录一次家庭环境二级路由配置遇到的问题
-        
-      </div>
-    </a>
   
+    <a href="/2020/03/14/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%AE%B6%E5%BA%AD%E7%8E%AF%E5%A2%83%E4%BA%8C%E7%BA%A7%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">记录一次家庭环境二级路由配置遇到的问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
