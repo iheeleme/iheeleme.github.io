@@ -22,20 +22,24 @@
     var CONFIG = {"hostname":"blog.iheeleme.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="#你好 我是iheeleme，欢迎来到我的Blog。  标准00后，一个没有文采的前端程序猿。目前就读于重庆某普通本科院校，专业为信息管理与信息系统。此Blog属于心血来潮的产物，记录一下个人生活学习的琐(瞎)事(写)，水平有限，内容难免出现错误，敬请谅解。 #希望 希望拥有  生活自由经济自由all自由 希望获得更多知识更多财富更多能力 #自我 网络的我：  菜鸡，程序猿，喜爱钻研的圈内小白现实">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About">
-<meta property="og:url" content="https://blog.iheeleme.com/about/index.html">
+  <meta name="description" content="注：网上已经有了非常多的教程，各种博客论坛都有关于这个的刷机方法，有需要ttl线的，也有部分不需要ttl线只需要双头USB线。 准备 玩客云一台(废话😂 ) 双头USB数据线一根（无需ttl线） 短接工具 拆机工具 U盘一个或者两个（不嫌麻烦一个就够） USB_Burning_Tool  刷底包使用 USBWriter    刷U盘使用开始  到手的玩客云是一台未拆过机的，因为玩客云需要拆机短接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玩客云安装armbian和docker记录">
+<meta property="og:url" content="https://blog.iheeleme.com/2021/07/18/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85armbian%E5%92%8Cdocker%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="iheeleme’s Blog">
-<meta property="og:description" content="#你好 我是iheeleme，欢迎来到我的Blog。  标准00后，一个没有文采的前端程序猿。目前就读于重庆某普通本科院校，专业为信息管理与信息系统。此Blog属于心血来潮的产物，记录一下个人生活学习的琐(瞎)事(写)，水平有限，内容难免出现错误，敬请谅解。 #希望 希望拥有  生活自由经济自由all自由 希望获得更多知识更多财富更多能力 #自我 网络的我：  菜鸡，程序猿，喜爱钻研的圈内小白现实">
+<meta property="og:description" content="注：网上已经有了非常多的教程，各种博客论坛都有关于这个的刷机方法，有需要ttl线的，也有部分不需要ttl线只需要双头USB线。 准备 玩客云一台(废话😂 ) 双头USB数据线一根（无需ttl线） 短接工具 拆机工具 U盘一个或者两个（不嫌麻烦一个就够） USB_Burning_Tool  刷底包使用 USBWriter    刷U盘使用开始  到手的玩客云是一台未拆过机的，因为玩客云需要拆机短接">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-09-18T12:22:44.000Z">
-<meta property="article:modified_time" content="2021-07-18T13:28:22.908Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gslkgyis3pj310v0u0jyp.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gslk8g88ifj30tn0k4411.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gslkivz99cj30ck083mxf.jpg">
+<meta property="article:published_time" content="2021-07-18T15:48:12.000Z">
+<meta property="article:modified_time" content="2021-07-18T16:50:47.559Z">
 <meta property="article:author" content="iheeleme">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,编程,代码,开源,IT网站,Developer,Programmer,Coder,css3,用户体验">
+<meta property="article:tag" content="Linux docker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gslkgyis3pj310v0u0jyp.jpg">
 
-<link rel="canonical" href="https://blog.iheeleme.com/about/">
+<link rel="canonical" href="https://blog.iheeleme.com/2021/07/18/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85armbian%E5%92%8Cdocker%E8%AE%B0%E5%BD%95/">
 
 
 <script id="page-configurations">
@@ -43,13 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>About | iheeleme’s Blog
-</title>
+  <title>玩客云安装armbian和docker记录 | iheeleme’s Blog</title>
   
 
 
@@ -155,59 +158,120 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.iheeleme.com/2021/07/18/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85armbian%E5%92%8Cdocker%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/img/header_img.jpeg">
+      <meta itemprop="name" content="iheeleme">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iheeleme’s Blog">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          玩客云安装armbian和docker记录
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">About
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-<div class="post-meta">
+              <time title="创建时间：2021-07-18 23:48:12" itemprop="dateCreated datePublished" datetime="2021-07-18T23:48:12+08:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-19 00:50:47" itemprop="dateModified" datetime="2021-07-19T00:50:47+08:00">2021-07-19</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>注：网上已经有了非常多的教程，各种博客论坛都有关于这个的刷机方法，有需要ttl线的，<br>也有部分不需要ttl线只需要双头USB线。</p>
+<h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><ul>
+<li>玩客云一台(废话😂 )</li>
+<li>双头USB数据线一根（无需ttl线）</li>
+<li>短接工具</li>
+<li>拆机工具</li>
+<li>U盘一个或者两个（不嫌麻烦一个就够）</li>
+<li>USB_Burning_Tool  刷底包使用</li>
+<li>USBWriter    刷U盘使用<h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4></li>
+</ul>
+<p>到手的玩客云是一台未拆过机的，因为玩客云需要拆机短接才能被识别出来，拆机看主板版本。<br>我入手的这台是1.3版本的，短接位置在主板正面，靠近指示灯的地方。<br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gslkgyis3pj310v0u0jyp.jpg"><br>将USB_Burning_Tool安装至电脑上，下载好所需底包，导入到USB_Burning_Tool<br>点击开始，将玩客云断电，使用双头USB线连接上电脑，玩客云插靠近HDMI口的USB接口<font color="red">（这里我遇到一个问题，插上线后，只要玩客云插上电源线，不管是否刷机，拔掉玩客云的电源或者拔数据线都会导致电脑直接掉电关机）</font>用短接工具对玩客云进行短接，短接时将玩客云通电，USB_Burning_Tool将出现图片所示，完成刷机。完成后断电重启，系统进入玩客云刷机底包。<br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gslk8g88ifj30tn0k4411.jpg"></p>
+<p>刷入刷机底包后，使用将下载的armbian的固件包刷入U盘<br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gslkivz99cj30ck083mxf.jpg"><br>将刷好的U盘插到玩客云靠近网口的USB端口，开机，玩客云会自动进入刷机模式，观察前面板蓝灯或U盘灯，等一会，约1分钟，期间玩客云会转成蓝紫2色灯交替闪烁，直至蓝灯长亮。<br>此时已经可以在路由器管理页面看到玩客云ip，使用ssh工具连接玩客云，把固件写入玩客云emmc<br>ssh连接玩客云后运行两个命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /boot/install/</span><br><span class="line">sudo ./install.sh</span><br></pre></td></tr></table></figure>
+<p>写入完成后ssh界面有提示断电<br>armbian包刷入完成。此版本固件自带docker，但Linux内核版本较低，可刷高版本内核固件。</p>
+<h4 id="刷入高版本固件"><a href="#刷入高版本固件" class="headerlink" title="刷入高版本固件"></a>刷入高版本固件</h4><p>准备一个新的U盘（没有可以用之前的），将下载好的高版本内核固件刷入U盘，刷入方式同刷入armbian低内核版本一致，不再阐述。</p>
+<p>将刷好的U盘插入到玩客云，玩客云前面板提示灯同样会闪烁，最后蓝灯常亮，ssh连接玩客云后，运行写入命令即可完成写入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /boot/install/</span><br><span class="line">sudo ./install.sh</span><br></pre></td></tr></table></figure>
+<p>此版本armbian没有docker，需要手动安装docker</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update 更新apt</span><br><span class="line">apt install docker.io</span><br></pre></td></tr></table></figure>
+<p>检查docker是否安装成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<p>至此玩客云刷armbian+docker安装完成，可以愉快的玩耍了。</p>
+<p>工具链接：<br><a target="_blank" rel="noopener" href="https://cloud.189.cn/web/share?code=7nAJjuvQbIRb">https://cloud.189.cn/web/share?code=7nAJjuvQbIRb</a></p>
+<p>注：本文图片来源于网络，侵删。文字内容为原创内容，转载请注明本文链接。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux-docker/" rel="tag"># Linux docker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/29/vue-js-axios%E4%B8%ADget%E3%80%81post%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/" rel="prev" title="vue.js+axios中post请求方式">
+      <i class="fa fa-chevron-left"></i> vue.js+axios中post请求方式
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <h4 id="你好"><a href="#你好" class="headerlink" title="#你好"></a>#你好</h4><font size="2">
-我是iheeleme，欢迎来到我的Blog。
-
-<p>标准00后，一个没有文采的前端程序猿。<br>目前就读于重庆某普通本科院校，专业为信息管理与信息系统。<br>此Blog属于心血来潮的产物，记录一下个人生活学习的琐(瞎)事(写)，<br>水平有限，内容难免出现错误，敬请谅解。<br></p></font><p></p>
-<h4 id="希望"><a href="#希望" class="headerlink" title="#希望"></a>#希望</h4><font size="2">
-希望拥有
-
-<p>生活自由<br>经济自由<br>all自由</p>
-<p>希望获得<br>更多知识<br>更多财富<br>更多能力<br></p></font><p></p>
-<h4 id="自我"><a href="#自我" class="headerlink" title="#自我"></a>#自我</h4><font size="2">
-网络的我：
-
-<p>菜鸡，程序猿，喜爱钻研的圈内小白<br>现实的我：<br>被女票疯狂嫌弃的直男，懒人，圈外小白眼中的大神<br></p></font><p></p>
-<h4 id="联系"><a href="#联系" class="headerlink" title="#联系"></a>#联系</h4><font size="2">
-mail:iheeleme@gmail.com
-
-</font>
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -258,7 +322,7 @@ mail:iheeleme@gmail.com
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%A0%E5%A5%BD"><span class="nav-number">1.</span> <span class="nav-text">#你好</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%8C%E6%9C%9B"><span class="nav-number">2.</span> <span class="nav-text">#希望</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E6%88%91"><span class="nav-number">3.</span> <span class="nav-text">#自我</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%94%E7%B3%BB"><span class="nav-number">4.</span> <span class="nav-text">#联系</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B7%E5%85%A5%E9%AB%98%E7%89%88%E6%9C%AC%E5%9B%BA%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">刷入高版本固件</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -19,19 +19,19 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"iheeleme.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"blog.iheeleme.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="iheeleme’s Blog">
-<meta property="og:url" content="https://iheeleme.com/index.html">
+<meta property="og:url" content="https://blog.iheeleme.com/index.html">
 <meta property="og:site_name" content="iheeleme’s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="iheeleme">
 <meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,编程,代码,开源,IT网站,Developer,Programmer,Coder,css3,用户体验">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://iheeleme.com/">
+<link rel="canonical" href="https://blog.iheeleme.com/">
 
 
 <script id="page-configurations">
@@ -157,7 +157,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://iheeleme.com/2020/04/29/vue-js-axios%E4%B8%ADget%E3%80%81post%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://blog.iheeleme.com/2021/07/18/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85armbian%E5%92%8Cdocker%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/img/header_img.jpeg">
+      <meta itemprop="name" content="iheeleme">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iheeleme’s Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/18/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85armbian%E5%92%8Cdocker%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">玩客云安装armbian和docker记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-18 23:48:12" itemprop="dateCreated datePublished" datetime="2021-07-18T23:48:12+08:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-19 00:50:47" itemprop="dateModified" datetime="2021-07-19T00:50:47+08:00">2021-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>注：网上已经有了非常多的教程，各种博客论坛都有关于这个的刷机方法，有需要ttl线的，<br>也有部分不需要ttl线只需要双头USB线。</p>
+<h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><ul>
+<li>玩客云一台(废话😂 )</li>
+<li>双头USB数据线一根（无需ttl线）</li>
+<li>短接工具</li>
+<li>拆机工具</li>
+<li>U盘一个或者两个（不嫌麻烦一个就够）</li>
+<li>USB_Burning_Tool  刷底包使用</li>
+<li>USBWriter    刷U盘使用<h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4></li>
+</ul>
+<p>到手的玩客云是一台未拆过机的，因为玩客云需要拆机短接才能被识别出来，拆机看主板版本。<br>我入手的这台是1.3版本的，短接位置在主板正面，靠近指示灯的地方。<br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gslkgyis3pj310v0u0jyp.jpg"><br>将USB_Burning_Tool安装至电脑上，下载好所需底包，导入到USB_Burning_Tool<br>点击开始，将玩客云断电，使用双头USB线连接上电脑，玩客云插靠近HDMI口的USB接口<font color="red">（这里我遇到一个问题，插上线后，只要玩客云插上电源线，不管是否刷机，拔掉玩客云的电源或者拔数据线都会导致电脑直接掉电关机）</font>用短接工具对玩客云进行短接，短接时将玩客云通电，USB_Burning_Tool将出现图片所示，完成刷机。完成后断电重启，系统进入玩客云刷机底包。<br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gslk8g88ifj30tn0k4411.jpg"></p>
+<p>刷入刷机底包后，使用将下载的armbian的固件包刷入U盘<br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gslkivz99cj30ck083mxf.jpg"><br>将刷好的U盘插到玩客云靠近网口的USB端口，开机，玩客云会自动进入刷机模式，观察前面板蓝灯或U盘灯，等一会，约1分钟，期间玩客云会转成蓝紫2色灯交替闪烁，直至蓝灯长亮。<br>此时已经可以在路由器管理页面看到玩客云ip，使用ssh工具连接玩客云，把固件写入玩客云emmc<br>ssh连接玩客云后运行两个命令</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/18/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85armbian%E5%92%8Cdocker%E8%AE%B0%E5%BD%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.iheeleme.com/2020/04/29/vue-js-axios%E4%B8%ADget%E3%80%81post%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/assets/img/header_img.jpeg">
@@ -237,7 +320,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://iheeleme.com/2020/03/14/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%AE%B6%E5%BA%AD%E7%8E%AF%E5%A2%83%E4%BA%8C%E7%BA%A7%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://blog.iheeleme.com/2020/03/14/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%AE%B6%E5%BA%AD%E7%8E%AF%E5%A2%83%E4%BA%8C%E7%BA%A7%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/assets/img/header_img.jpeg">
@@ -307,7 +390,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://iheeleme.com/2020/03/13/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://blog.iheeleme.com/2020/03/13/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/assets/img/header_img.jpeg">
@@ -446,9 +529,15 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
